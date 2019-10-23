@@ -1,0 +1,46 @@
+{% extends 'home.html' %}
+
+{% block title %}Apom Post{% endblock %}
+
+{% block post_content %}
+    {% if post.published_date %}
+        <table class="table table-light table-striped">
+            {{pk}}
+                <tbody>
+                    <tr>
+                        <th>Author</th>
+                        <td><a href="#">{{ post.author }}</a></td>
+                    </tr>
+                    <tr>
+                        <th>Published</th>
+                        <td>{{ post.published_date }}</td>
+                    </tr>
+                    <tr>
+                        <th>Home</th>
+                        <td>House no :
+                            {% if authorinfo.home %}
+                                {{authorinfo.home}},
+                            {% endif %}
+                            {% if authorinfo.block %}
+                                {{authorinfo.block}},
+                            {% endif %}
+                            {{authorinfo.community}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><a href="#" class="card-link">{{ post.title }}</a></h5>
+                    <p class="card-text">{{ post.text|linebreaksbr }}</p>
+                </div>
+            </div>
+        {% else %}
+             <div class="card">
+                <div class="card-body">
+                    <p class="card-text">Post is not live, sorry for inconvinience</p>
+                </div>
+             </div>
+        {% endif %}
+{% endblock %}
