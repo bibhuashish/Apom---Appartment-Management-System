@@ -1,0 +1,34 @@
+{% extends 'home.html' %}
+
+{% block title %}Apom Users{% endblock %}
+
+{% block user_content %}
+<table class="table table-light table-striped">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Admin</th>
+            <th>Active</th>
+            <th>Address</th>
+        </tr>
+    </thead>
+    <tbody>
+ {% for userinfo1, userinfo2 in usersinfo %}
+ <tr>
+     <td><a href="{% url 'user_detail' pk=userinfo1.pk %}">{{ userinfo1.username }}</a></td>
+     <td>{{ userinfo1.is_superuser }}</td>
+     <td>{{ userinfo1.is_active }}</td>
+     <td>
+         {% if userinfo2.home %}
+            {{userinfo2.home}},
+         {% endif %}
+         {% if userinfo2.block %}
+            {{userinfo2.block}},
+         {% endif %}
+         {{userinfo2.community}}
+     </td>
+ </tr>
+ {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

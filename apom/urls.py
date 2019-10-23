@@ -7,4 +7,5 @@ urlpatterns = [
     path('post/new/', postview.post_new, name='post_new'),
     path('post/<int:pk>/edit/', postview.post_edit, name='post_edit'),
     path('user/<int:pk>/', userview.user_detail, name='user_detail'),
+    path('users/', userview.user_list, name='user_list'),
 ]
