@@ -1,0 +1,56 @@
+{% extends 'apom/post_list.html' %}
+
+{% block title %}Apom Post{% endblock %}
+
+{% block user_content %}
+    <table class="table table-light table-striped">
+                <tbody>
+                    <tr>
+                        <th>Name</th>
+                        <td><a href="#">{{ userinfo1.first_name }} {{ userinfo1.last_name}}</a></td>
+                    </tr>
+                    <tr>
+                        <th>Username</th>
+                        <td><a href="#">{{ userinfo1.username}}</a></td>
+                    </tr>
+                    <tr>
+                        <th>Mail ID</th>
+                        <td><a href="#">{{ userinfo1.email}}</a></td>
+                    </tr>
+                    <tr>
+                        <th>Role</th>
+                        <td><a href="#">{{ userinfo2.role}}</a></td>
+                    </tr>
+                    <tr>
+                        <th>Home</th>
+                        <td>House no :
+                            {% if userinfo2.home %}
+                                {{userinfo2.home}},
+                            {% endif %}
+                            {% if userinfo2.block %}
+                                {{userinfo2.block}},
+                            {% endif %}
+                            {{userinfo2.community}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Is admin</th>
+                        <td><a href="#">{{ userinfo1.is_superuser}}</a></td>
+                    </tr>
+                    <tr>
+                        <th>Is active</th>
+                        <td><a href="#">{{ userinfo1.is_active}}</a></td>
+                    </tr>
+                </tbody>
+    </table>
+</br>
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>Recent Posts</th>
+            </tr>
+        </thead>
+    </table>
+</br>
+{% endblock %}

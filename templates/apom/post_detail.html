@@ -9,7 +9,7 @@
                 <tbody>
                     <tr>
                         <th>Author</th>
-                        <td><a href="#">{{ post.author }}</a></td>
+                        <td><a href="{% url 'user_detail' pk=post.author.pk %}">{{ post.author }}</a></td>
                     </tr>
                     <tr>
                         <th>Published</th>
@@ -34,6 +34,9 @@
                 <div class="card-body">
                     <h5 class="card-title"><a href="#" class="card-link">{{ post.title }}</a></h5>
                     <p class="card-text">{{ post.text|linebreaksbr }}</p>
+                    {% if post.author.pk == user.pk %}
+                        <a href="{% url 'post_edit' pk=post.pk %}" class="card-link">Edit</a>
+                    {% endif%}
                 </div>
             </div>
         {% else %}
