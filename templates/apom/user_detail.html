@@ -6,6 +6,10 @@
     {% if user.is_superuser or user.id == context.userinfo.id %}
         <a href="{% url 'user_edit' pk=context.userinfo.pk %}">Edit</a>
     {% endif %}
+    </br>
+    {% if user.is_superuser and not context.userinfo.is_superuser%}
+        <a href="{% url 'user_delete' pk=context.userinfo.pk %}">Delete</a>
+    {% endif %}
     <table class="table table-light table-striped">
                 <tbody>
                     <tr>

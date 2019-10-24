@@ -9,7 +9,7 @@
             <a href="{% url 'user_detail' pk=post.author.pk %}" class="card-link">{{ post.author }}</a>
             <a href="#" class="card-link">{{ post.published_date }}</a>
             {% if post.author.pk == user.pk %}
-            <a href="{% url 'post_edit' pk=post.pk %}" class="card-link">Edit</a>
+                <a href="{% url 'post_edit' pk=post.pk %}" class="card-link">Edit</a>
             {% endif%}
         </div>
     </div>

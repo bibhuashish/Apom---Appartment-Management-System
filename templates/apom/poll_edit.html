@@ -1,0 +1,21 @@
+{% extends 'home.html' %}
+
+{% block title %}Apom Poll Form{% endblock %}
+
+{% block poll_content %}
+<div class="container">
+    {% if context.new or user.pk == context.poll.author.pk %}
+        {% if context.new %}
+            <h5>Add Poll</h5>
+        {% else %}
+            <h5>Edit Poll</h5>
+        {% endif %}
+        <form method="POST" class="post-form">{% csrf_token %}
+            {{ context.form.as_p }}
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    {% else %}
+        Invalid access to page
+    {% endif %}
+</div>
+{% endblock %}

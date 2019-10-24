@@ -10,6 +10,7 @@
             <th>Admin</th>
             <th>Active</th>
             <th>Address</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -26,6 +27,11 @@
             {{ residentinfo.block }},
          {% endif %}
          {{ residentinfo.community }}
+     </td>
+     <td>
+         {% if user.is_superuser and not userinfo.is_superuser%}
+            <a href="{% url 'user_delete' pk=userinfo.pk %}">Delete</a>
+         {% endif %}
      </td>
  </tr>
  {% endfor %}

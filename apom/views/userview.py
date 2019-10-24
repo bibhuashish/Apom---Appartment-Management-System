@@ -82,3 +82,9 @@ def user_edit(request, pk):
         'userinfo': user,
     }
     return render(request, 'apom/user_edit.html', {'context': context})
+
+def user_delete(request, pk):
+    user = get_object_or_404(User, pk=pk)
+    if(request.user.is_superuser):
+        user.delete()
+    return redirect('user_list')

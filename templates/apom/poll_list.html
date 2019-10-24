@@ -1,0 +1,18 @@
+{% extends 'home.html' %}
+
+{% block poll_content %}
+ {% for poll in context.polls %}
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title"><a href="" class="card-link">{{ poll.title }}</a></h5>
+            <p class="card-text">{{ poll.text|linebreaksbr }}</p>
+            <p><a href="">{{poll.positive}} Supporters</a>  <a href="">{{poll.negative}} Protestors</a></p>
+            <a href="{% url 'user_detail' pk=poll.author.pk %}" class="card-link">{{ poll.author }}</a>
+            <a href="#" class="card-link">{{ poll.published_date }}</a>
+            {% if poll.author.pk == user.pk %}
+            {% endif%}
+        </div>
+    </div>
+    </br>
+{% endfor %}
+{% endblock %}

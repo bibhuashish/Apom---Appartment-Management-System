@@ -55,3 +55,9 @@ def post_edit(request, pk):
         'post': post,
     }
     return render(request, 'apom/post_edit.html', {'context': context})
+
+def post_delete(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if(post.author.id == request.user.pk):
+        post.delete()
+    return redirect('user_detail', pk=post.author.pk)
