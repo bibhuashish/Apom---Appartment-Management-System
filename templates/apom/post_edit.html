@@ -1,17 +1,17 @@
 {% extends 'home.html' %}
 
-{% block title %}Apom Form{% endblock %}
+{% block title %}Apom Post Form{% endblock %}
 
 {% block post_content %}
 <div class="container">
-    {% if new or user.pk == post.author.pk %}
-        {% if new %}
-            <h2>Add Post</h2>
+    {% if context.new or user.pk == context.post.author.pk %}
+        {% if context.new %}
+            <h5>Add Post</h5>
         {% else %}
-            <h2>Edit Post</h2>
+            <h5>Edit Post</h5>
         {% endif %}
         <form method="POST" class="post-form">{% csrf_token %}
-            {{ form.as_p }}
+            {{ context.form.as_p }}
             <button type="submit" class="btn btn-primary">Save</button>
         </form>
     {% else %}

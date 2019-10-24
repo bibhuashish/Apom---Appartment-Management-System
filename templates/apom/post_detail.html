@@ -3,27 +3,27 @@
 {% block title %}Apom Post{% endblock %}
 
 {% block post_content %}
-    {% if post.published_date %}
+    {% if context.post.published_date %}
         <table class="table table-light table-striped">
                 <tbody>
                     <tr>
                         <th>Author</th>
-                        <td><a href="{% url 'user_detail' pk=post.author.pk %}">{{ post.author }}</a></td>
+                        <td><a href="{% url 'user_detail' pk=context.post.author.pk %}">{{ context.post.author }}</a></td>
                     </tr>
                     <tr>
                         <th>Published</th>
-                        <td>{{ post.published_date }}</td>
+                        <td>{{ context.post.published_date }}</td>
                     </tr>
                     <tr>
                         <th>Home</th>
-                        <td>House no :
-                            {% if authorinfo.home %}
-                                {{authorinfo.home}},
+                        <td>
+                            {% if context.resident_authorinfo.home %}
+                                House no : {{ context.resident_authorinfo.home }},
                             {% endif %}
-                            {% if authorinfo.block %}
-                                {{authorinfo.block}},
+                            {% if context.resident_authorinfo.block %}
+                                {{ context.resident_authorinfo.block }},
                             {% endif %}
-                            {{authorinfo.community}}
+                            {{ context.resident_authorinfo.community }}
                         </td>
                     </tr>
                 </tbody>
@@ -31,10 +31,10 @@
 
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title"><a href="#" class="card-link">{{ post.title }}</a></h5>
-                    <p class="card-text">{{ post.text|linebreaksbr }}</p>
-                    {% if post.author.pk == user.pk %}
-                        <a href="{% url 'post_edit' pk=post.pk %}" class="card-link">Edit</a>
+                    <h5 class="card-title"><a href="#" class="card-link">{{ context.post.title }}</a></h5>
+                    <p class="card-text">{{ context.post.text|linebreaksbr }}</p>
+                    {% if context.post.author.pk == user.pk %}
+                        <a href="{% url 'post_edit' pk=context.post.pk %}" class="card-link">Edit</a>
                     {% endif%}
                 </div>
             </div>

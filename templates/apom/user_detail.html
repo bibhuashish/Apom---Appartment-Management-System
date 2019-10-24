@@ -3,43 +3,51 @@
 {% block title %}Apom User{% endblock %}
 
 {% block user_content %}
+    {% if user.is_superuser or user.id == context.userinfo.id %}
+        <a href="{% url 'user_edit' pk=context.userinfo.pk %}">Edit</a>
+    {% endif %}
     <table class="table table-light table-striped">
                 <tbody>
                     <tr>
                         <th>Name</th>
-                        <td><a href="#">{{ userinfo1.first_name }} {{ userinfo1.last_name}}</a></td>
+                        <td><a href="#">{{ context.userinfo.first_name }} {{ context.userinfo.last_name}}</a></td>
                     </tr>
                     <tr>
                         <th>Username</th>
-                        <td><a href="#">{{ userinfo1.username }}</a></td>
+                        <td><a href="#">{{ context.userinfo.username }}</a></td>
                     </tr>
                     <tr>
                         <th>Mail ID</th>
-                        <td><a href="#">{{ userinfo1.email }}</a></td>
+                        <td><a href="#">{{ context.userinfo.email }}</a></td>
                     </tr>
                     <tr>
                         <th>Role</th>
-                        <td><a href="#">{{ userinfo2.role }}</a></td>
+                        <td><a href="#">{{ context.residentinfo.role }}</a></td>
                     </tr>
                     <tr>
                         <th>Home</th>
-                        <td>House no :
-                            {% if userinfo2.home %}
-                                {{userinfo2.home}},
+                        <td>
+                            {% if context.residentinfo.home %}
+                                House no :
+                                {{context.residentinfo.home}},
                             {% endif %}
-                            {% if userinfo2.block %}
-                                {{userinfo2.block}},
+                            {% if context.residentinfo.block %}
+                                {{context.residentinfo.block}},
                             {% endif %}
-                            {{userinfo2.community}}
+                            {{context.residentinfo.community}}
                         </td>
                     </tr>
                     <tr>
+                        <th>Joined on</th>
+                        <td>{{ context.userinfo.date_joined }}</td>
+                    </tr>
+                    <tr>
                         <th>Is admin</th>
-                        <td><a href="#">{{ userinfo1.is_superuser}}</a></td>
+                        <td><a href="#">{{ context.userinfo.is_superuser}}</a></td>
                     </tr>
                     <tr>
                         <th>Is active</th>
-                        <td><a href="#">{{ userinfo1.is_active}}</a></td>
+                        <td><a href="#">{{ context.userinfo.is_active}}</a></td>
                     </tr>
                 </tbody>
     </table>
@@ -48,7 +56,7 @@
         <thead>
             <tr>
                 <th></th>
-                <th>Recent Posts</th>
+                <th>Published Posts ({{context.posts.count}})</th>
             </tr>
         </thead>
     </table>

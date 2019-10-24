@@ -1,7 +1,7 @@
 {% extends 'home.html' %}
 
 {% block post_content %}
- {% for post in posts %}
+ {% for post in context.posts %}
     <div class="card">
         <div class="card-body">
             <h5 class="card-title"><a href="{% url 'post_detail' pk=post.pk %}" class="card-link">{{ post.title }}</a></h5>

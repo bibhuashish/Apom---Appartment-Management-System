@@ -13,19 +13,19 @@
         </tr>
     </thead>
     <tbody>
- {% for userinfo1, userinfo2 in usersinfo %}
+ {% for userinfo, residentinfo in context.usersinfo %}
  <tr>
-     <td><a href="{% url 'user_detail' pk=userinfo1.pk %}">{{ userinfo1.username }}</a></td>
-     <td>{{ userinfo1.is_superuser }}</td>
-     <td>{{ userinfo1.is_active }}</td>
+     <td><a href="{% url 'user_detail' pk=userinfo.pk %}">{{ userinfo.username }}</a></td>
+     <td>{{ userinfo.is_superuser }}</td>
+     <td>{{ userinfo.is_active }}</td>
      <td>
-         {% if userinfo2.home %}
-            {{userinfo2.home}},
+         {% if residentinfo.home %}
+            {{ residentinfo.home }},
          {% endif %}
-         {% if userinfo2.block %}
-            {{userinfo2.block}},
+         {% if residentinfo.block %}
+            {{ residentinfo.block }},
          {% endif %}
-         {{userinfo2.community}}
+         {{ residentinfo.community }}
      </td>
  </tr>
  {% endfor %}
