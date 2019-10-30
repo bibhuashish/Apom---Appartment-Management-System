@@ -1,12 +1,13 @@
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from django.contrib.auth.models import User
+from apom.models.pollmodel import Poll
 from apom.models.residentmodel import Resident
 from apom.models.postmodel import Post
 from apom.forms.userform import UserForm, AdminAddUserForm, AdminEditUserForm
 from apom.forms.residentform import ResidentForm, AdminResidentForm
 from django.shortcuts import redirect
-from django.contrib.auth.hashers import make_password
+
 
 def user_list(request):
     usersinfo = User.objects.filter().order_by('-is_superuser')
@@ -22,11 +23,13 @@ def user_list(request):
 def user_detail(request, pk):
     userinfo = get_object_or_404(User, pk=pk)
     residentinfo = Resident.objects.get(user=pk)
-    posts = Post.objects.filter(author=userinfo,published_date__lte=timezone.now()).order_by('-published_date')
+    posts = Post.objects.filter(author=userinfo,published_date__lte=timezone.now()).order_by('-published_date')[:5]
+    # polls = Poll.objects.filter(author=userinfo, published_date__lte=timezone.now()).order_by('-published_date')[:5]
     context = {
         'userinfo': userinfo,
         'residentinfo': residentinfo,
         'posts': posts,
+        # 'polls': polls
     }
     return render(request, 'apom/user_detail.html', {'context': context})
 

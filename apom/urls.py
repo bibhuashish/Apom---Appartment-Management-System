@@ -19,4 +19,9 @@ urlpatterns = [
     path('polls/', pollview.poll_list, name='poll_list'),
     path('polls/new/', pollview.poll_new, name='poll_new'),
     path('polls/<int:pk>/', pollview.poll_detail, name='poll_detail'),
+    path('polls/<int:pk>/edit/', pollview.poll_edit, name='poll_edit'),
+    path('polls/<int:pk>/delete/', pollview.poll_delete, name='poll_delete'),
+
+    path('api/polls/<int:pk>/like', pollview.poll_like, name="poll_like"),
+    path('api/polls/<int:pk>/dislike', pollview.poll_dislike, name="poll_dislike"),
 ]

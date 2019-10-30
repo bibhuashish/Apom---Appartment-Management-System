@@ -4,12 +4,13 @@
  {% for poll in context.polls %}
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title"><a href="" class="card-link">{{ poll.title }}</a></h5>
+            <h5 class="card-title"><a href="{% url 'poll_detail' pk=poll.pk %}" class="card-link">{{ poll.title }}</a></h5>
             <p class="card-text">{{ poll.text|linebreaksbr }}</p>
-            <p><a href="">{{poll.positive}} Supporters</a>  <a href="">{{poll.negative}} Protestors</a></p>
+            <p><a href="{% url 'poll_like' pk=poll.pk %}">{{poll.positive}} Supporters</a>  <a href="{% url 'poll_dislike' pk=poll.pk %}">{{poll.negative}} Protestors</a></p>
             <a href="{% url 'user_detail' pk=poll.author.pk %}" class="card-link">{{ poll.author }}</a>
-            <a href="#" class="card-link">{{ poll.published_date }}</a>
+            <a href="" class="card-link">{{ poll.published_date }}</a>
             {% if poll.author.pk == user.pk %}
+                <a href="{% url 'poll_edit' pk=poll.pk %}" class="card-link">Edit</a>
             {% endif%}
         </div>
     </div>

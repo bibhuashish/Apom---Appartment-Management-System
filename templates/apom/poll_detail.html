@@ -33,9 +33,10 @@
                 <div class="card-body">
                     <h5 class="card-title"><a href="#" class="card-link">{{ context.poll.title }}</a></h5>
                     <p class="card-text">{{ context.poll.text|linebreaksbr }}</p>
-                    <p><a href="">{{context.poll.positive}} Supporters</a>  <a href="">{{context.poll.negative}} Protestors</a></p>
+                    <p><a href="{% url 'poll_like' pk=context.poll.pk %}">{{context.poll.positive}} Supporters</a>  <a href="{% url 'poll_dislike' pk=context.poll.pk %}">{{context.poll.negative}} Protestors</a></p>
                     {% if context.poll.author.pk == user.pk %}
-
+                        <a href="{% url 'poll_edit' pk=context.poll.pk %}" class="card-link">Edit</a>
+                        <a href="{% url 'poll_delete' pk=context.poll.pk %}" class="card-link">Delete</a>
                     {% endif%}
                 </div>
             </div>

@@ -7,7 +7,7 @@
             <h5 class="card-title"><a href="{% url 'post_detail' pk=post.pk %}" class="card-link">{{ post.title }}</a></h5>
             <p class="card-text">{{ post.text|linebreaksbr }}</p>
             <a href="{% url 'user_detail' pk=post.author.pk %}" class="card-link">{{ post.author }}</a>
-            <a href="#" class="card-link">{{ post.published_date }}</a>
+            <a href="" class="card-link">{{ post.published_date }}</a>
             {% if post.author.pk == user.pk %}
                 <a href="{% url 'post_edit' pk=post.pk %}" class="card-link">Edit</a>
             {% endif%}
